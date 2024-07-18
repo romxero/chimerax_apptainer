@@ -25,6 +25,8 @@ apt-get -ymq update
 #dnf -y install /opt/ucsf-chimerax-1.7.1-1.el8.x86_64.rpm
 apt-get -ymq install /opt/ucsf-chimerax_1.8ubuntu24.04_amd64.deb
 
+mkdir -p /hpc
+
 
 %environment
 export LC_ALL=C.UTF-8
