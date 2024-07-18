@@ -1,0 +1,28 @@
+Bootstrap: docker
+From: ubuntu:24.04
+
+#this is the main chimerax container for use on the bruno hpc system at czbiohub sf 
+
+%labels
+        Author _RC_
+
+%setup
+
+%files
+
+./ucsf-chimerax_1.8ubuntu24.04_amd64.deb /opt/
+
+%post
+
+apt-get -ymq update 
+apt-get -ymq install /opt/ucsf-chimerax_1.8ubuntu24.04_amd64.deb
+
+mkdir -p /hpc
+
+
+%environment
+export LC_ALL=C.UTF-8
+
+
+%runscript
+/usr/bin/chimerax
