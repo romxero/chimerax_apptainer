@@ -1,0 +1,34 @@
+Bootstrap: docker
+From: ubuntu:24.04
+
+# please visit the github page for more information
+# https://github.com/ubccr/xdmod
+
+%labels
+        Author _RC_
+
+%setup
+
+%files
+
+#./ucsf-chimerax-1.7.1-1.el8.x86_64.rpm /opt/
+#./ucsf-chimerax-1.8-1.el8.x86_64.rpm /opt/
+./ucsf-chimerax_1.8ubuntu24.04_amd64.deb /opt/
+
+%post
+
+apt-get -ymq update 
+#dnf -y upgrade
+#dnf -y install wget curl epel-release #mesa-dri-drivers mesa-filesystem mesa-libGL mesa-libGLU mesa-libOSMesa
+#/usr/bin/crb enable
+#dnf -y install mesa-dri-drivers mesa-filesystem mesa-libGL mesa-libGLU mesa-libOSMesa mesa-vdpau-drivers mesa-vulkan-drivers 
+#dnf -y install /opt/ucsf-chimerax-1.7.1-1.el8.x86_64.rpm
+apt-get -ymq install /opt/ucsf-chimerax_1.8ubuntu24.04_amd64.deb
+
+
+%environment
+export LC_ALL=C.UTF-8
+
+
+%runscript
+echo /dev/null # duh 

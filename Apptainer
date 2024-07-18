@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: rockylinux:8.9-minimal
+From: rockylinux:8.9
 
 # please visit the github page for more information
 # https://github.com/ubccr/xdmod
@@ -11,29 +11,17 @@ From: rockylinux:8.9-minimal
 
 %files
 
+./ucsf-chimerax-1.7.1-1.el8.x86_64.rpm /opt/
+./ucsf-chimerax-1.8-1.el8.x86_64.rpm /opt/
 %post
 
 dnf -y update 
 dnf -y upgrade
-dnf -y install wget curl epel-release
-dnf -y https://www.cgl.ucsf.edu/chimerax/cgi-bin/secure/chimerax-get.py?file=1.7/centos-8/ucsf-chimerax-1.7.1-1.el8.x86_64.rpm
-
-
-
-#DEPLOYMENT_DIR=/opt/chimerax_staging #this is where we stage the database downloads here
-
-# the main deployment directory here: 
-#mkdir -p ${DEPLOYMENT_DIR}
-
-# push to the deployment directory onto the stack
-#pushd ${DEPLOYMENT_DIR}
-
-# download the databases
-
-
-
-
-#popd 
+dnf -y install wget curl epel-release #mesa-dri-drivers mesa-filesystem mesa-libGL mesa-libGLU mesa-libOSMesa
+/usr/bin/crb enable
+dnf -y install mesa-dri-drivers mesa-filesystem mesa-libGL mesa-libGLU mesa-libOSMesa mesa-vdpau-drivers mesa-vulkan-drivers 
+#dnf -y install /opt/ucsf-chimerax-1.7.1-1.el8.x86_64.rpm
+dnf -y install /opt/ucsf-chimerax-1.8-1.el8.x86_64.rpm
 
 
 %environment
