@@ -1,8 +1,7 @@
 Bootstrap: docker
 From: ubuntu:24.04
 
-# please visit the github page for more information
-# https://github.com/ubccr/xdmod
+#this is the main chimerax container for use on the bruno hpc system at czbiohub sf 
 
 %labels
         Author _RC_
@@ -11,18 +10,11 @@ From: ubuntu:24.04
 
 %files
 
-#./ucsf-chimerax-1.7.1-1.el8.x86_64.rpm /opt/
-#./ucsf-chimerax-1.8-1.el8.x86_64.rpm /opt/
 ./ucsf-chimerax_1.8ubuntu24.04_amd64.deb /opt/
 
 %post
 
 apt-get -ymq update 
-#dnf -y upgrade
-#dnf -y install wget curl epel-release #mesa-dri-drivers mesa-filesystem mesa-libGL mesa-libGLU mesa-libOSMesa
-#/usr/bin/crb enable
-#dnf -y install mesa-dri-drivers mesa-filesystem mesa-libGL mesa-libGLU mesa-libOSMesa mesa-vdpau-drivers mesa-vulkan-drivers 
-#dnf -y install /opt/ucsf-chimerax-1.7.1-1.el8.x86_64.rpm
 apt-get -ymq install /opt/ucsf-chimerax_1.8ubuntu24.04_amd64.deb
 
 mkdir -p /hpc
@@ -33,4 +25,4 @@ export LC_ALL=C.UTF-8
 
 
 %runscript
-echo /dev/null # duh 
+/usr/bin/chimerax
