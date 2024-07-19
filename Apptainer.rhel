@@ -1,0 +1,44 @@
+Bootstrap: docker
+From: rockylinux:8.9-minimal
+
+# please visit the github page for more information
+# https://github.com/ubccr/xdmod
+
+%labels
+        Author _RC_
+
+%setup
+
+%files
+
+%post
+
+dnf -y update 
+dnf -y upgrade
+dnf -y install wget curl epel-release
+dnf -y https://www.cgl.ucsf.edu/chimerax/cgi-bin/secure/chimerax-get.py?file=1.7/centos-8/ucsf-chimerax-1.7.1-1.el8.x86_64.rpm
+
+
+
+#DEPLOYMENT_DIR=/opt/chimerax_staging #this is where we stage the database downloads here
+
+# the main deployment directory here: 
+#mkdir -p ${DEPLOYMENT_DIR}
+
+# push to the deployment directory onto the stack
+#pushd ${DEPLOYMENT_DIR}
+
+# download the databases
+
+
+
+
+#popd 
+
+
+%environment
+export LC_ALL=C.UTF-8
+
+
+%runscript
+echo /dev/null # duh 
